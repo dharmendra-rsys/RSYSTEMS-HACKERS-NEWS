@@ -7,6 +7,9 @@
 
 User need to download zip code and extract into locatl folder. <br/>
 
+HackerNewsApp.Web- Its a angular project to display newest story list in UI. <br/>
+HackerNewsApi.API- Its a .Net Core Web API project to develop api for angular project. <br/>
+
 <h2>
 Requirment: <br/></h2>
 Visual Studio 2022 <br/>
