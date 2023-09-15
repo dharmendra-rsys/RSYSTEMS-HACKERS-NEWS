@@ -1,0 +1,46 @@
+
+<div class="navbar navbar-expand-lg bg-primary mb-3" data-bs-theme="dark">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <div class="navbar-nav me-auto text-white">
+        <h4>TOP STORIES</h4>
+      </div>
+      <div class="d-flex">
+        <input class="form-control me-sm-2" type="search" [(ngModel)]="searchValue" placeholder="Search">
+        <button class="btn btn-secondary my-4 my-sm-0" (click)="onSearch()">Search</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h4 *ngIf="isLoading" class="text-center p-4">
+  Loading data...
+</h4>
+
+<div *ngIf="!isLoading">
+  <ng-container *ngFor="let story of topStories | paginate: { itemsPerPage: pagingOptions.pagingSize, currentPage: pagingOptions.page, totalItems: pagingOptions.count}">
+    <div *ngIf="story.url" class="alert alert-dismissible alert-light">
+      <strong><a href="{{story.url}}" target="_blank" class="">{{story.title}}</a></strong>
+    </div>
+  </ng-container>
+</div>
+
+<div class="row mt-3">
+  <div class="col-3">
+    <label>Paging Size: </label>
+    <select (change)="onPageSizeChange($event)">
+      <option *ngFor="let size of pagingOptions.pagingSizes">
+        {{size}}
+      </option>
+    </select>
+  </div>
+  <div class="col-6">
+    <pagination-controls (pageChange)="pagingOptions.page = $event"> </pagination-controls>
+  </div>
+  <div class="col-3" style="text-align:right">
+    <label>
+      Total Records: {{pagingOptions.count}}
+    </label>
+  </div>
+</div>
+
