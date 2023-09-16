@@ -21,7 +21,7 @@ export class NewestStoriesComponent implements OnInit {
     this.getTopStories(this.searchValue);
   }
 
-  //
+  //Get top stories
   getTopStories(searchValue: string) {
     this.isLoading = true;
     this.hackersService.getTopStories(searchValue).subscribe((stories) => {
@@ -31,13 +31,13 @@ export class NewestStoriesComponent implements OnInit {
     });
   }
 
-  //
+  //Page size change event
   onPageSizeChange(event: any) {
     this.pagingOptions.pagingSize = event.target.value;
     this.pagingOptions.page = 1;
   }
 
-  //
+  //Seaarch event
   onSearch() {
     this.getTopStories(this.searchValue);
     this.pagingOptions.page = 1;
